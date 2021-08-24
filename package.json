@@ -1,0 +1,43 @@
+{
+  "name": "contentful-backup-s3",
+  "version": "1.0.0",
+  "author": "Raymond Ly",
+  "license": "ISC",
+  "description": "Contentful space backup export to S3.",
+  "scripts": {
+    "invoke:exportContentfulSpace": "yarn build && serverless invoke local --function exportContentfulSpace && yarn clean",
+    "build": "yarn clean && tsc --esModuleInterop",
+    "clean": "rm -rf dist/",
+    "lint": "eslint src --ext .js,.ts",
+    "test": "yarn clean && tsc --esModuleInterop -p tsconfig.test.json && yarn jest --verbose"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "aws-sdk": "^2.585.0",
+    "contentful-export": "^7.13.0",
+    "eslint-plugin-import": "^2.22.1",
+    "typescript": "^3.7.2"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.35",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/jest": "^24.0.25",
+    "@types/jest-when": "^2.7.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.14",
+    "eslint": "^6.7.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "jest": "^24.9.0",
+    "serverless": "^1.61.1",
+    "serverless-dotenv-plugin": "^2.1.1"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/dist/test/**/*.spec.js"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/dist/test/jestExtensions/matchers.js"
+    ]
+  }
+}

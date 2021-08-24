@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
+      "noImplicitAny": true,
+      "lib": ["ESNext"],
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "pretty": true,
+      "target": "es2019",
+      "allowJs": false,
+      "skipLibCheck": true,
+      "sourceMap": true,
+      "strictNullChecks": true,
+      "outDir": "./dist",
+      "rootDir": "./"
+    },
+    "exclude": ["node_modules"]
+  }

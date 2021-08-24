@@ -1,0 +1,33 @@
+service: contentful-backup-s3
+
+package:
+  exclude:
+    - '/*'
+    - '*~'
+    - 'test/**'
+  include:
+    - 'src/**'
+    - 'node_module/**'
+
+plugins:
+  - serverless-dotenv-plugin
+
+custom:
+  maxParallel: 1
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  exportContentfulSpace:
+    handler: dist/src/handlers/exportContentfulSpace.get
+    memorySize: 2048
+    timeout: 50
+    description: Export Contentful space to S3.
+    reservedConcurrency: 5
+    events:
+      - schedule:
+          name: export-contentful-space-schedule
+          description: Scheduled event for exporting contentful space to S3 every Friday at 5am.
+          rate: cron(0 5 * * 5 *)
