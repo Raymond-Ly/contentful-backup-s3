@@ -4,7 +4,7 @@ import config from '../../config';
 
 export const uploadFile = async (): Promise<unknown> => {
   const s3 = new S3();
-  const key = `backups/${Date.now().toString()}.json`;
+  const key = `${Date.now().toString()}.json`;
   const outputFile = config.exportDir + config.contentFile;
   const fileBuffer = Buffer.from(fs.readFileSync(outputFile));
   fs.unlinkSync(outputFile);

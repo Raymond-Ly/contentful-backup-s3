@@ -18,6 +18,12 @@ custom:
 provider:
   name: aws
   runtime: nodejs14.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+      Resource:
+        - arn:aws:s3:::corg-contentful-export
 
 functions:
   exportContentfulSpace:
